@@ -1,51 +1,76 @@
+/* =========================
+   Fonts
+   ========================= */
 html, body, input, select, textarea, button{
   font-family: "Inter", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif !important;
 }
 
-
+/* =========================
+   Brand tokens
+   ========================= */
 :root{
-  --pe-blue: #0b4a78;     /* aprox albastru din materiale */
+  --pe-blue: #0b4a78;
   --pe-blue-2: #083a60;
-  --pe-green: #19c37d;    /* verde accent */
+  --pe-green: #19c37d;
+
   --pe-white: #ffffff;
   --pe-text: rgba(255,255,255,0.86);
   --pe-muted: rgba(255,255,255,0.68);
+
   --pe-border: rgba(255,255,255,0.14);
+  --pe-panel: rgba(255,255,255,0.06);
 }
 
-/* Fundal general */
+/* =========================
+   Base / layout
+   ========================= */
 body{
   background: var(--pe-blue);
   color: var(--pe-text);
 }
 
-/* Containerul mare */
 #wrapper{
   background: var(--pe-blue);
 }
 
-#intro {
+/* keep template effects intact */
+#main{
+  background: transparent;
+}
+
+/* Optional: center intro content if you still use #intro */
+#intro{
   display: flex;
   flex-direction: column;
-  justify-content: center;   /* centru vertical */
-  align-items: center;       /* centru orizontal */
+  justify-content: center;
+  align-items: center;
   min-height: 100vh;
   text-align: center;
 }
 
+/* =========================
+   Header (brand)
+   ========================= */
+#header .logo{
+  border: 0 !important;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  color: var(--pe-white);
+}
 
-/* NAV (final, centered) */
+/* =========================
+   NAV – DESKTOP (>= 981px)
+   Centered links + LinkedIn right
+   ========================= */
 #nav{
   background: rgba(0,0,0,0.25);
   border: 1px solid rgba(255,255,255,0.12);
   border-radius: 12px;
 
-  /* new: center the menu */
   display: flex;
   align-items: center;
   justify-content: center;
 
-  /* gives room for the icon on the right */
   position: relative;
   padding: 0.35rem 1.25rem;
 }
@@ -60,7 +85,6 @@ body{
   padding: 0;
 }
 
-/* Link styling (your original) */
 #nav .links li a{
   color: var(--pe-white);
   text-transform: none !important;
@@ -68,12 +92,11 @@ body{
   font-weight: 600;
 }
 
-/* Active underline (your original) */
 #nav .links li.active a{
   border-bottom-color: var(--pe-green);
 }
 
-/* Keep LinkedIn icon to the right, without affecting centering */
+/* LinkedIn stays on the right without shifting center */
 #nav .icons{
   position: absolute;
   right: 1.1rem;
@@ -82,62 +105,64 @@ body{
   margin: 0;
 }
 
-/* MOBILE NAV: show links directly (no hamburger panel) */
-@media (max-width: 736px){
+/* =========================
+   TABLET + MOBILE (<= 980px)
+   IMPORTANT: fixes the "empty bar" bug by hiding #nav
+   and using the template hamburger (navPanel)
+   ========================= */
+@media (max-width: 980px){
 
-  /* Hide the hamburger "MENU" button/panel behavior */
-  .navPanelToggle { 
-    display: none !important; 
-  }
-
-  /* Force the nav links to be visible */
-  #nav .links{
-    display: flex !important;
-    flex-wrap: nowrap;
-    justify-content: flex-start;
-    gap: 0.75rem;
-
-    overflow-x: auto;                 /* allows swipe horizontally */
-    -webkit-overflow-scrolling: touch;
-    padding: 0.25rem 0.25rem;
-  }
-
-  #nav .links li{
-    flex: 0 0 auto;                   /* prevents items from shrinking away */
-  }
-
-  /* Optional: hide socials on mobile to save space */
-  #nav .icons{
+  /* Hide desktop bar entirely -> no "empty bar" */
+  #nav{
     display: none !important;
   }
-}
 
-/* MOBILE: remove dark nav bar overlay */
-@media (max-width: 736px){
+  /* Correct selector from template is #navPanelToggle (ID) */
+  #navPanelToggle{
+    display: block !important;
 
-  #nav{
-    background: transparent !important;
-    border: none !important;
-    box-shadow: none !important;
+    background: rgba(0,0,0,0.35);
+    border: 1px solid rgba(255,255,255,0.18);
+    border-radius: 999px;
+
+    color: var(--pe-white) !important;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
   }
 
+  #navPanelToggle:before{
+    color: var(--pe-white) !important;
+  }
+
+  /* Side panel theme */
+  #navPanel{
+    background: rgba(0,0,0,0.86) !important;
+    color: var(--pe-white) !important;
+  }
+
+  #navPanel .links li{
+    border-top-color: rgba(255,255,255,0.14) !important;
+  }
+
+  #navPanel .links li a{
+    color: var(--pe-white) !important;
+    text-transform: none !important;
+    letter-spacing: 0.02em !important;
+    font-weight: 600 !important;
+  }
+
+  #navPanel .close{
+    color: rgba(255,255,255,0.75) !important;
+  }
+
+  #navPanel .close:hover{
+    color: var(--pe-white) !important;
+  }
 }
 
-
-/* Header: scoate look-ul boxed masiv */
-#header .logo{
-  border: 0 !important;
-  font-weight: 800;
-  letter-spacing: 0.08em;
-  color: var(--pe-white);
-}
-
-/* MAIN: fără “carduri” uriașe gri */
-#main{
-  background: transparent;
-}
-
-/* HERO */
+/* =========================
+   HERO (if you use .pe-hero)
+   ========================= */
 .pe-hero{
   min-height: 72vh;
   display: flex;
@@ -189,7 +214,9 @@ body{
   flex-wrap: wrap;
 }
 
-/* Sectiuni */
+/* =========================
+   Sections styling
+   ========================= */
 #main > section.post{
   background: rgba(255,255,255,0.06);
   border: 1px solid rgba(255,255,255,0.12);
@@ -198,7 +225,7 @@ body{
   margin-top: 2rem;
 }
 
-/* Titluri în main: mai puțin caps */
+/* Titles */
 header.major h2, .pe-title{
   color: var(--pe-white) !important;
   text-transform: none !important;
@@ -213,36 +240,46 @@ header.major h2, .pe-title{
   line-height: 1.75;
 }
 
-/* Cards (benefits) */
+/* =========================
+   Cards (benefits)
+   ========================= */
 .pe-cards{
   display: grid;
   grid-template-columns: repeat(2, minmax(0,1fr));
   gap: 1rem;
   margin-top: 1.25rem;
 }
+
 .pe-card{
   background: rgba(255,255,255,0.07);
   border: 1px solid rgba(255,255,255,0.14);
   border-radius: 14px;
   padding: 1.25rem;
 }
+
 .pe-card h3{
   margin: 0 0 0.5rem 0;
   color: var(--pe-white);
   text-transform: none !important;
   letter-spacing: 0.02em !important;
 }
+
 .pe-card p{
   margin: 0;
   color: var(--pe-muted);
 }
 
-/* Butoane brand */
+/* =========================
+   Buttons
+   ========================= */
 .button{
   border-color: rgba(255,255,255,0.25) !important;
   color: var(--pe-white) !important;
 }
-.button:hover{ border-color: var(--pe-green) !important; }
+
+.button:hover{
+  border-color: var(--pe-green) !important;
+}
 
 .button.primary{
   background: var(--pe-green) !important;
@@ -250,18 +287,24 @@ header.major h2, .pe-title{
   color: #062a20 !important;
 }
 
-.actions.special {
+/* Space above CTA group */
+.actions.special{
   margin-top: 2.5rem !important;
 }
 
-/* Footer simplu */
+/* =========================
+   Footer
+   ========================= */
 #footer{
   background: transparent;
 }
+
 #footer h3{ color: var(--pe-white); }
 #footer a{ color: var(--pe-green); }
 
-/* Mobile */
+/* =========================
+   MOBILE (<= 736px)
+   ========================= */
 @media (max-width: 736px){
   .pe-hero-inner{ padding: 2rem; }
   .pe-hero-title{ font-size: 2.2rem; }

@@ -341,3 +341,139 @@ header.major h2 {
     grid-template-columns: 1fr;
   }
 }
+
+
+/* ==========================================
+   CONTENT POLISH (impact, readability)
+   ========================================== */
+
+/* 1) Strong highlights: subtle brand emphasis */
+#main strong,
+#intro strong {
+  color: var(--pe-white);
+  font-weight: 800;
+  text-shadow: 0 0 0 rgba(0,0,0,0); /* no heavy glow */
+  position: relative;
+}
+
+/* 2) Hero paragraph: bigger + cleaner */
+#intro p {
+  max-width: 920px;
+  font-size: 1.15rem;
+  line-height: 1.8;
+  color: var(--pe-text);
+  margin-top: 1rem;
+}
+
+/* 3) Section paragraphs: improve rhythm */
+#main p {
+  margin: 0 0 1.1rem 0;
+}
+
+/* 4) Lists: premium bullets + spacing */
+#main ul {
+  list-style: none;
+  padding-left: 0;
+  margin: 1rem 0 1.25rem 0;
+}
+
+#main ul li {
+  position: relative;
+  padding-left: 1.35rem;
+  margin: 0.55rem 0;
+  line-height: 1.7;
+  color: var(--pe-text);
+}
+
+/* custom bullet dot */
+#main ul li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.55em;
+  width: 0.55rem;
+  height: 0.55rem;
+  border-radius: 999px;
+  background: rgba(15, 215, 106, 0.9);
+  box-shadow: 0 0 0 3px rgba(15, 215, 106, 0.14);
+}
+
+/* Do NOT apply list bullets to action buttons */
+.actions,
+.actions li {
+  list-style: none !important;
+}
+
+.actions li::before {
+  display: none !important;
+  content: none !important;
+}
+
+
+/* 5) Section titles: slightly tighter and more modern */
+header.major h2 {
+  margin-bottom: 0.6rem !important;
+}
+
+/* 6) Cards: slightly clearer separation (helps with soft background) */
+.pe-card {
+  background: rgba(255, 255, 255, 0.075);
+  border-color: rgba(255, 255, 255, 0.16);
+}
+
+/* 7) Mobile tuning (keeps it readable) */
+@media (max-width: 736px) {
+  #intro p {
+    font-size: 1.05rem;
+    line-height: 1.75;
+  }
+}
+
+
+/* =========================
+   Section spacing (vertical rhythm)
+   ========================= */
+#main > .pe-container > section.post {
+  margin-top: 4rem;
+}
+
+#main > .pe-container > section.post:first-of-type {
+  margin-top: 2.5rem;
+}
+
+
+/* Closing statement spacing */
+/* Make the closing statement feel attached to footer */
+.pe-difference {
+  margin-top: 3rem;        /* mic spațiu față de Market insights */
+  margin-bottom: -3rem;  /* o trage mai aproape de footer */
+  text-align: center;
+}
+
+
+/* Watermark logo for closing section */
+.pe-difference {
+  position: relative;
+  overflow: hidden;
+}
+
+.pe-difference::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: url("../images/p-mark.png") center / 420px no-repeat;
+  opacity: 0.08;           /* foarte subtil */
+  pointer-events: none;
+}
+
+.pe-difference > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* Green accent text */
+.pe-accent {
+  color: var(--pe-green);
+  font-weight: 900;
+}
+

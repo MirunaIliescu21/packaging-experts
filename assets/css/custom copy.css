@@ -29,6 +29,8 @@ html, body, input, select, textarea, button {
 
 /* =========================
    3) Global background (blurred blue)
+   - Applies to whole site
+   - Keeps layout responsive safe
    ========================= */
 body {
   background: var(--pe-blue);
@@ -44,6 +46,34 @@ body {
 }
 
 /* Blurred fixed gradient background */
+/* body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+
+  background:
+    radial-gradient(circle at 18% 20%, rgba(15, 215, 106, 0.22), rgba(15, 215, 106, 0) 55%),
+    radial-gradient(circle at 82% 28%, rgba(255, 255, 255, 0.10), rgba(255, 255, 255, 0) 60%),
+    radial-gradient(circle at 35% 85%, rgba(0, 0, 0, 0.14), rgba(0, 0, 0, 0) 55%),
+    linear-gradient(135deg, #00477f 0%, #003d6e 100%);
+
+    /*linear-gradient(135deg, #00355f 0%, var(--pe-blue) 0%, #002a4b 100%); */
+
+  /* filter: blur(24px) saturate(130%); * TODO: BLUR */
+  /**
+    blur(10px)   // aproape clar
+    blur(18px)   // echilibrat (actual)
+    blur(26px)   // foarte blurat, soft
+    saturate(100%)  // natural
+    saturate(110%)  // safe
+    saturate(130%)  // vibrant
+
+  */
+  /* transform: scale(1.08);
+} */
+
 body::before {
   content: "";
   position: fixed;
@@ -60,6 +90,7 @@ body::before {
   transform: scale(1.12);
 }
 
+
 /* Ensure all content sits above background */
 #wrapper, #main, #footer, #intro, #header, #nav {
   position: relative;
@@ -72,25 +103,16 @@ body::before {
 }
 
 /* =========================
-   4) Intro / Hero (UPDATED)
-   - slightly higher position
-   - safe on mobile (svh)
+   4) Intro / Hero (existing #intro)
+   - only alignment (no separate background)
    ========================= */
 #intro {
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
-
-  /* move it a bit up, keep it airy */
-  justify-content: flex-start;
-  min-height: 100svh;
-  padding-top: clamp(3.5rem, 9vh, 6.5rem);
-  padding-bottom: clamp(2.5rem, 6vh, 4.5rem);
-
+  min-height: 100vh;
   text-align: center;
-
-  /* spacing between logo / title / text */
-  gap: clamp(0.9rem, 2.2vh, 1.35rem);
 }
 
 /* =========================
@@ -111,83 +133,10 @@ body::before {
   color: var(--pe-green);
 }
 
-/* =========================
-   HERO LOGO (UPDATED + ANIMATION)
-   ========================= */
 .pe-logo-hero {
-  display: block;
-
-  /* 🔹 DIMENSIUNE RESPONSIVE */
-  width: clamp(160px, 45vw, 230px);
-  height: auto;
-
-  /* 🔹 CENTRARE PERFECTĂ */
-  margin-left: auto;
-  margin-right: auto;
-  margin-bottom: 0.8rem;
-
-  /* 🔹 MICĂ CORECȚIE OPTICĂ (DREAPTA) */
-  transform: translateX(-15px);
-
-  /* 🔹 ANIMAȚIE */
-  opacity: 0;
-  /* animation: peFadeUp 800ms ease-out 120ms forwards; */
-  animation: peFadeUp 1200ms ease-out 200ms forwards;
-
-}
-
-
-/* Title + paragraph animation (subtle, premium) */
-#intro .pe-hero-title {
-  opacity: 0;
-  transform: translateY(10px);
-  animation: peFadeUp 820ms cubic-bezier(0.2, 0.8, 0.2, 1) 220ms forwards;
-  will-change: transform, opacity;
-}
-
-#intro p {
-  opacity: 0;
-  transform: translateY(12px);
-  animation: peFadeUp 860ms cubic-bezier(0.2, 0.8, 0.2, 1) 360ms forwards;
-  will-change: transform, opacity;
-}
-
-/* Animations (safe + reusable) */
-@keyframes peFadeUp {
-  from { opacity: 0; transform: translateY(14px) scale(0.98); }
-  to   { opacity: 1; transform: translateY(0) scale(1); }
-}
-
-/* Respect reduced motion */
-@media (prefers-reduced-motion: reduce) {
-  .pe-logo-hero,
-  #intro .pe-hero-title,
-  #intro p {
-    animation: none !important;
-    opacity: 1 !important;
-    transform: none !important;
-  }
-}
-
-/* Mobile tuning */
-@media (max-width: 736px) {
-  .pe-logo-hero {
-    width: clamp(130px, 42vw, 190px);
-    margin-bottom: 0.35rem;
-  }
-
-  #intro {
-    padding-top: clamp(3rem, 8vh, 5rem);
-    gap: 0.95rem;
-  }
-}
-
-/* Optional hover on desktop */
-@media (hover: hover) and (pointer: fine) {
-  .pe-logo-hero:hover {
-    transform: translateY(-2px) scale(1.01);
-    transition: transform 220ms ease;
-  }
+  width: clamp(140px, 18vw, 220px);
+  margin-bottom: 2rem;
+  opacity: 0.95;
 }
 
 /* =========================
@@ -312,6 +261,7 @@ body::before {
   }
 }
 
+
 /* =========================
    8) Sections styling
    ========================= */
@@ -414,6 +364,7 @@ header.major h2 {
   }
 }
 
+
 /* ==========================================
    CONTENT POLISH (impact, readability)
    ========================================== */
@@ -480,6 +431,7 @@ header.major h2 {
   content: none !important;
 }
 
+
 /* 5) Section titles: slightly tighter and more modern */
 header.major h2 {
   margin-bottom: 0.6rem !important;
@@ -499,6 +451,7 @@ header.major h2 {
   }
 }
 
+
 /* =========================
    Section spacing (vertical rhythm)
    ========================= */
@@ -510,16 +463,19 @@ header.major h2 {
   margin-top: 2.5rem;
 }
 
+
 /* Closing statement spacing */
 /* Make the closing statement feel attached to footer */
 .pe-difference {
   margin-top: 3rem;        /* mic spațiu față de Market insights */
-  margin-bottom: -3rem;    /* o trage mai aproape de footer */
+  margin-bottom: -3rem;  /* o trage mai aproape de footer */
   text-align: center;
 }
+
 
 /* Green accent text */
 .pe-accent {
   color: var(--pe-green);
   font-weight: 900;
 }
+

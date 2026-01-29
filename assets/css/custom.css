@@ -462,7 +462,7 @@ header.major h2 {
 /* Make the closing statement feel attached to footer */
 .pe-difference {
   margin-top: 3rem;        /* mic spațiu față de Market insights */
-  margin-bottom: -3rem;  /* o trage mai aproape de footer */
+  margin-bottom: -10rem;  /* o trage mai aproape de footer */
   text-align: center;
 }
 
@@ -477,7 +477,7 @@ header.major h2 {
   content: "";
   position: absolute;
   inset: 0;
-  background: url("../images/p-mark.png") center / 420px no-repeat;
+  background: url("../../images/packaging-mark-white.png") center / 450px no-repeat;
   opacity: 0.08;           /* foarte subtil */
   pointer-events: none;
 }

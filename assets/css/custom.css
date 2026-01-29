@@ -126,18 +126,12 @@ body::before {
   margin-right: auto;
   margin-bottom: 0.8rem;
 
-  /* 🔹 MICĂ CORECȚIE OPTICĂ (DREAPTA) */
-  transform: translateX(-15px);
-
   /* 🔹 ANIMAȚIE */
   opacity: 0;
   /* animation: peFadeUp 800ms ease-out 120ms forwards; */
   /* animation: peFadeUp 1200ms ease-out 200ms forwards; */
   animation: peWow 1100ms cubic-bezier(0.16, 1, 0.3, 1) 150ms forwards;
-
-
 }
-
 
 /* Title + paragraph animation (subtle, premium) */
 #intro .pe-hero-title {
@@ -575,3 +569,25 @@ header.major h2 {
   color: var(--pe-green);
   font-weight: 900;
 }
+
+
+/* Mobile: add space between "difference" section and footer contact */
+@media (max-width: 736px) {
+  .pe-difference {
+    margin-bottom: 1.5rem !important;  /* scoatem efectul de lipire */
+  }
+
+  #footer {
+    margin-top: 1.25rem !important;    /* aer între sectiuni */
+  }
+}
+
+/* MOBILE: more space between title and intro text */
+@media (max-width: 736px) {
+
+  /* mai mult spațiu SUB titlu */
+  #intro .pe-hero-title {
+    margin-bottom: 6rem !important;
+  }
+}
+

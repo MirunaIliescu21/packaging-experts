@@ -191,14 +191,16 @@ body::before {
 
 /* =========================
    7) Tablet + Mobile (<= 980px)
-   Fix "empty bar" bug by hiding #nav
-   and letting template hamburger run (navPanel)
+   Mobile navPanel — brand aligned (SAFE)
    ========================= */
 @media (max-width: 980px) {
+
+  /* Hide desktop nav */
   #nav {
     display: none !important;
   }
 
+  /* Hamburger button */
   #navPanelToggle {
     display: block !important;
 
@@ -215,11 +217,23 @@ body::before {
     color: var(--pe-white) !important;
   }
 
+  /* ===== MOBILE MENU PANEL (FIX BLACK) ===== */
   #navPanel {
-    background: rgba(0, 0, 0, 0.86) !important;
+    background: linear-gradient(
+      135deg,
+      rgba(0, 71, 127, 0.96),
+      rgba(0, 61, 110, 0.96)
+    ) !important;
+
     color: var(--pe-white) !important;
+
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+
+    border-left: 1px solid rgba(255, 255, 255, 0.12);
   }
 
+  /* Menu items */
   #navPanel .links li {
     border-top-color: rgba(255, 255, 255, 0.14) !important;
   }
@@ -231,6 +245,7 @@ body::before {
     font-weight: 600 !important;
   }
 
+  /* Close (X) */
   #navPanel .close {
     color: rgba(255, 255, 255, 0.75) !important;
   }
@@ -239,6 +254,7 @@ body::before {
     color: var(--pe-white) !important;
   }
 }
+
 
 /* =========================
    8) Sections styling
